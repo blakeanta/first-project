@@ -9,5 +9,7 @@ Remember to do git config of username and email on git bash!
 
 
 -----------------------------------------------------------------------
-Generate SSH key.
+Generate SSH key. Use cat ~/.ssh/id_ed25519.pub command to get the SSH key after you generated.
+
+
 ![Generate SSH key](https://github.com/user-attachments/assets/3e60be8e-307e-44fd-8832-5d23b5ad91eb)
