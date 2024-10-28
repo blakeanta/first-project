@@ -13,3 +13,34 @@ Generate SSH key. Use cat ~/.ssh/id_ed25519.pub command to get the SSH key after
 
 
 ![Generate SSH key](https://github.com/user-attachments/assets/3e60be8e-307e-44fd-8832-5d23b5ad91eb)
+
+
+---------------------------------------------------------------------
+## Branch Naming Rules ##
+
+1. __Main Branch__
+   * main or master: This is the primary branch where the stable version of your code resides. Many projects are moving towards using main instead of master.
+   * In this project ___master___ branch is the primary/default branch.
+
+2. __Feature Branches__
+
+    * feature/your-feature-name: Used for developing new features. For example, feature/user-authentication.
+feat/your-feature-name: Another variation using a shorthand for "feature".
+
+3. __Bugfix Branches__
+
+    * bugfix/issue-name: Used for fixing bugs. For example, bugfix/fix-login-error.
+fix/issue-name: A shorthand for "fix".
+
+4. __Hotfix Branches__
+
+    * hotfix/critical-fix: Used for urgent fixes that need to be applied immediately to the production code.
+
+
+
+-----------------------------------------------------------------
+## References ##
+1. Github README markdown cheatsheet: https://github.com/tchapi/markdown-cheatsheet/blob/master/README.md
+
+
+
