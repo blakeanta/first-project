@@ -12,6 +12,7 @@ import learn_decorator
 
 def otherFunction():
    print("Other functions")
+   callingFunctionFromLearnDecorator()
 
 def callingFunctionFromLearnDecorator():
    learn_decorator.say_hello()
@@ -24,7 +25,7 @@ def callingFunctionFromLearnDecorator():
 def main():
    print("Hello World")
    otherFunction()
-   callingFunctionFromLearnDecorator()
+   
    
    
    
