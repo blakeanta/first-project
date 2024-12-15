@@ -1,4 +1,6 @@
 import learn_decorator
+from package_1 import Function1, Function2, SubPackage1Class
+
 
 
 ##################################################################################
@@ -12,6 +14,9 @@ import learn_decorator
 
 def otherFunction():
    print("Other functions")
+   Function2()
+   Function1()
+   obj = SubPackage1Class(__name__)
 
 def callingFunctionFromLearnDecorator():
    learn_decorator.say_hello()
