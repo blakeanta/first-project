@@ -47,10 +47,12 @@ class Point:
 # Shape class inherits from Point
 class Shape(ABC, Point):
    
-   def __init__(self, x, y, remark=None):
-      super().__init__(x, y)
-      self._remark = remark
+   def __init__(self, type=None):
+      self._type = type
       
+   def GetShape(self):
+      return self._type
+   
    # Abstract method: Must be implemented by any subclass
    # @abstractmethod: This decorator marks the method as abstract, 
    # meaning that any subclass must implement it.
@@ -89,8 +91,8 @@ class Shape(ABC, Point):
 
 
 class Square(Shape):
-   def __init__(self, x, y, side_length=None, remark=None):
-      super().__init__(x, y, remark)
+   def __init__(self, x, y, side_length=None):
+      super().__init__(Square)
       self._side_length = side_length
 
    def Area(self):
