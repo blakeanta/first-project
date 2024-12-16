@@ -51,7 +51,7 @@ class Shape(ABC, Point):
       self._type = type
       
    def GetShape(self):
-      return self._type
+      return self._type._Attribute()
    
    # Abstract method: Must be implemented by any subclass
    # @abstractmethod: This decorator marks the method as abstract, 
@@ -86,15 +86,30 @@ class Shape(ABC, Point):
    # must implement the class method.
    @classmethod
    @abstractmethod
-   def Attribute(cls):
+   def _Attribute(cls):
       pass
 
 
 class Square(Shape):
-   def __init__(self, x, y, side_length=None):
+   '''use Square(p1, p2) or Square(x, y, w, h)'''
+   
+   def __init__(self, *args):
       super().__init__(Square)
-      self._side_length = side_length
+      
+      if len(args) == 2 and isinstance(args[0], Point) and isinstance(args[1], Point):
+         self._point_tl = args[0]
+         self._point_br = args[1]
+         self._side_length = self.GetSideLength()
+      
+      elif len(args) == 4 and all(isinstance(arg, (int, float)) for arg in args):
+         x, y, w, h = args
+         self._point_tl = Point(x, y)
+         self._point_br = Point(w - x, h - y)
+         self._side_length = w
 
+   def GetSideLength(self):
+      return self._point_br._x - self._point_tl._x
+   
    def Area(self):
       return self._side_length ** 2
    
@@ -102,7 +117,7 @@ class Square(Shape):
       return 4 * self._side_length
    
    @classmethod
-   def Attribute(cls):
+   def _Attribute(cls):
       print("This is a Square")
 
 
@@ -117,5 +132,7 @@ class Circle(Shape):
 class Triangle(Shape):
    pass
 
-
-Square.Attribute()
+s = Square(0, 0, 5, 5)
+y = Square(Point(1, 2), Point(4, 5))
+print(s.Area())
+print(y.Area())
