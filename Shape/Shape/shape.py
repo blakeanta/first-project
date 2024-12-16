@@ -1,4 +1,4 @@
-
+from math import sqrt
 from abc import ABC, abstractmethod
 
 
@@ -34,8 +34,11 @@ class Point:
    def __repr__(self):
       return f"Point({self._x, self._y})"
    
-   def DistanceTo(self, new_point):
-      pass
+   def DistanceTo(self, new_point: "Point"):
+      if not isinstance(new_point, Point):
+         raise TypeError("new_point must be an instance of Point")
+      distance = sqrt()
+   
    
    def Rotate(self, angle):
       pass
