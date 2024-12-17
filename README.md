@@ -24,17 +24,15 @@ Generate SSH key. Use cat ~/.ssh/id_ed25519.pub command to get the SSH key after
 
 2. __Feature Branches__
 
-    * feature/your-feature-name: Used for developing new features. For example, feature/user-authentication.
-feat/your-feature-name: Another variation using a shorthand for "feature".
+    * feature/#issue number-your-feature-name: Used for developing new features.
 
 3. __Bugfix Branches__
 
-    * bugfix/issue-name: Used for fixing bugs. For example, bugfix/fix-login-error.
-fix/issue-name: A shorthand for "fix".
+    * bugfix/#issue number-issue-name: Used for fixing bugs.
 
 4. __Hotfix Branches__
 
-    * hotfix/critical-fix: Used for urgent fixes that need to be applied immediately to the production code.
+    * hotfix/#issue number-critical-fix: Used for urgent fixes that need to be applied immediately to the production code.
 
 
 
