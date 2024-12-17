@@ -1,4 +1,4 @@
-
+import math
 from abc import ABC, abstractmethod
 
 
@@ -34,14 +34,26 @@ class Point:
    def __repr__(self):
       return f"Point({self._x, self._y})"
    
-   def DistanceTo(self, new_point):
-      pass
+   def DistanceTo(self, new_point: "Point"):
+      """Calculate the Euclidean distance between two points."""
+
+      if not isinstance(new_point, Point):
+         raise TypeError("new_point must be an instance of Point")
+      
+      distance = math.sqrt((self._x - new_point._x) ** 2 + (self._y - new_point._y) ** 2)
+      return distance
    
    def Rotate(self, angle):
-      pass
+      """Rotate the point around the origin (0, 0) by the given angle in degrees."""
+      angle_rad = math.radians(angle)
+      new_x = self.x * math.cos(angle_rad) - self.y * math.sin(angle_rad)
+      new_y = self.x * math.sin(angle_rad) + self.y * math.cos(angle_rad)
+      return Point(new_x, new_y)
+      
    
-   def Scale(self):
-      pass
+   def Scale(self, factor):
+      """Scale the point by the given factor."""
+      return Point(self.x * factor, self.y * factor)
 
 
 # Shape class inherits from Point
