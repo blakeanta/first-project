@@ -24,11 +24,11 @@ Generate SSH key. Use cat ~/.ssh/id_ed25519.pub command to get the SSH key after
 
 2. __Feature Branches__
 
-    * feature/#issue number-your-feature-name: Used for developing new features. For example, feature/user-authentication.
+    * feature/#issue number-your-feature-name: Used for developing new features.
 
 3. __Bugfix Branches__
 
-    * bugfix/#issue number-issue-name: Used for fixing bugs. For example, bugfix/fix-login-error.
+    * bugfix/#issue number-issue-name: Used for fixing bugs.
 
 4. __Hotfix Branches__
 
