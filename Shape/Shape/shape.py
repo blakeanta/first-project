@@ -132,7 +132,3 @@ class Circle(Shape):
 class Triangle(Shape):
    pass
 
-s = Square(0, 0, 5, 5)
-y = Square(Point(1, 2), Point(4, 5))
-print(s.Area())
-print(y.Area())
