@@ -1,6 +1,5 @@
 from package_1 import Function1, Function2, SubPackage1Class, LearnDecorator
-from Shape import Square, Rectangle, Triangle, Circle
-
+from Shape import Square, Rectangle, Triangle, Circle, Polygon, Point
 
 
 ##################################################################################
@@ -38,14 +37,15 @@ def callingFunctionFromShape():
    square = Square(10, 0, 6, 6)
    print(square._point_br._x)
    print(square._point_br._y)
-   
+   poly = Polygon((0,0), (3,4), Point(7, 4), (7,0))
+   poly.GetPointList()
+   print(poly.GetPerimeter())
 
 
 def main():
    print("Hello World")
    otherFunction()
    
-  
    
    
    

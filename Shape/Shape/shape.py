@@ -34,13 +34,13 @@ class Point:
    def __repr__(self):
       return f"Point({self._x, self._y})"
    
-   def DistanceTo(self, new_point: "Point"):
+   def _DistanceTo(self, pt1: "Point", pt2: "Point"):
       """Calculate the Euclidean distance between two points."""
 
-      if not isinstance(new_point, Point):
+      if not (isinstance(pt1, Point) and isinstance(pt2, Point)):
          raise TypeError("new_point must be an instance of Point")
       
-      distance = math.sqrt((self._x - new_point._x) ** 2 + (self._y - new_point._y) ** 2)
+      distance = math.sqrt((pt1._x - pt2._x) ** 2 + (pt1._y - pt2._y) ** 2)
       return distance
    
    def Rotate(self, angle):
@@ -59,8 +59,8 @@ class Point:
 # Shape class inherits from Point
 class Shape(ABC, Point):
    
-   def __init__(self, type=None):
-      self._type = type
+   def __init__(self, shape_type=None):
+      self._type = shape_type
       
    def GetShape(self):
       return self._type._Attribute()
@@ -69,12 +69,12 @@ class Shape(ABC, Point):
    # @abstractmethod: This decorator marks the method as abstract, 
    # meaning that any subclass must implement it.
    @abstractmethod
-   def Area(self):
+   def GetArea(self):
       '''Calculate the area of the shape'''
       pass
    
    @abstractmethod
-   def Perimeter(self):
+   def GetPerimeter(self):
       '''Calculate the perimeter of the shape'''
       pass
    
@@ -133,10 +133,10 @@ class Square(Shape):
 
       return w
    
-   def Area(self):
+   def GetArea(self):
       return self._side_length ** 2
    
-   def Perimeter(self):
+   def GetPerimeter(self):
       return 4 * self._side_length
    
    @classmethod
@@ -191,4 +191,57 @@ class Circle(Shape):
 
 class Triangle(Shape):
    pass
+
+
+class Polygon(Shape):
+   '''Instantiate Polygon with at least 3 Point. Polygon(p1, p2, p3) or Polygon((x1, y1), (x2, y2), (x3, y3)) 
+   or Polygon(p1, (x1, y1), p2, p3, (x2, y2))'''
+
+   def __init__(self, *args):
+      super().__init__(Polygon)
+      self._point_list = list()
+      
+      if len(args) < 3:
+         raise ValueError("Polygon must have at least 3 points")
+      
+      for arg in args:
+         if isinstance(arg, Point):
+            self._point_list.append(arg)
+         
+         elif isinstance(arg, tuple) and len(arg) == 2 and all(isinstance(item, (int, float)) for item in arg):
+            new_point = Point(arg[0], arg[1])
+            self._point_list.append(new_point)
+         
+         else:
+            raise ValueError("Wrong argument type. Arguments must be either Point or tuple of float or int or both.")
+         
+         
+   def GetPointList(self):
+      for point in self._point_list:
+         print(f"({point._x}, {point._y})")
+         
+      return self._point_list
+   
+   def GetArea(self):
+      """This feature is not yet developed"""
+      pass
+   
+   def GetPerimeter(self):
+      res = 0
+      l, r = 0, 1
+      
+      while l < r:
+         res += self._DistanceTo(self._point_list[l], self._point_list[r])
+         l += 1
+         r += 1
+         
+         if r >= len(self._point_list):
+            r = 0
+            res += self._DistanceTo(self._point_list[l], self._point_list[r])
+            return res
+   
+   @classmethod
+   def _Attribute(cls):
+      print("This is a Polygon")
+      
 
