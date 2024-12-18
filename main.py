@@ -1,5 +1,5 @@
 from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, greet
-
+from Shape import Circle
 
 
 ##################################################################################
@@ -13,10 +13,12 @@ from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, gr
 
 def otherFunction():
    print("Other functions")
+   
    callingFunctionFromLearnDecorator()
    Function2()
    Function1()
    obj = SubPackage1Class(__name__)
+   callingFunctionFromShape()
 
 def callingFunctionFromLearnDecorator():
    say_hello()
@@ -24,6 +26,12 @@ def callingFunctionFromLearnDecorator():
    greet("Ali")
    print(greet.__name__)
    print(greet.__doc__)
+   
+   
+def callingFunctionFromShape():
+   circle = Circle(1, 2, diameter= 5)
+   circle.GetShape()
+   print(circle.Area())
 
 
 def main():
