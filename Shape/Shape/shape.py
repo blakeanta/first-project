@@ -138,7 +138,44 @@ class Rectangle(Shape):
 
 
 class Circle(Shape):
-   pass
+   '''Create instance of Circle with Circle(x, y, diamter=) or Circle(x, y, radius=) or Circle(Point, radius=), 
+   where x and y is center of the circle '''
+   
+   def __init__(self, *args, diameter=None, radius=None):
+      super().__init__(Circle)
+      
+      if len(args) == 2 and all(isinstance(arg, (int, float)) for arg in args):
+         self._center_point = Point(args[0], args[1])
+      
+      elif len(args) == 1 and isinstance(args[0], Point):
+         self._center_point = args[0]
+         
+      else:
+         raise ValueError("Too many arguments or wrong type is provided")
+         
+         
+      if diameter is not None:
+         self._diameter = diameter
+         self._radius = self._diameter / 2
+         
+      elif radius is not None:
+         self._radius = radius
+         self._diameter = self._radius * 2
+         
+      else:
+         raise ValueError("diameter and radius cannot be both None must be provided one of them")
+      
+      
+      
+   def Area(self):
+      return math.pi * (self._radius ** 2)
+   
+   def Perimeter(self):
+      return 2 * math.pi * self._radius
+   
+   @classmethod
+   def _Attribute(cls):
+      print("This is a circle")
 
 
 class Triangle(Shape):
