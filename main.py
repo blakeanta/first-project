@@ -1,5 +1,5 @@
 from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, greet
-
+from Shape.Shape.shape import Polygon, Point
 
 
 ##################################################################################
@@ -29,7 +29,9 @@ def callingFunctionFromLearnDecorator():
 def main():
    print("Hello World")
    otherFunction()
-   
+   poly = Polygon((0,0), (3,4), Point(7, 4), (7,0))
+   poly.GetPointList()
+   print(poly.GetPerimeter())
    
    
    
