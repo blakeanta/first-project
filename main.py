@@ -19,6 +19,7 @@ def otherFunction():
    Function1()
    callingFunctionFromLearnDecorator()
    obj = SubPackage1Class(__name__)
+   callingFunctionFromShape()
 
 def callingFunctionFromLearnDecorator():
    obj = LearnDecorator(__name__)
@@ -29,7 +30,11 @@ def callingFunctionFromLearnDecorator():
    print(obj.greet.__name__)
    print(obj.greet.__doc__)
    
+   
 def callingFunctionFromShape():
+   circle = Circle(1, 2, diameter= 5)
+   circle.GetShape()
+   print(circle.Area())
    square = Square(10, 0, 6, 6)
    print(square._point_br._x)
    print(square._point_br._y)
