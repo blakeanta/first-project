@@ -1,5 +1,5 @@
-from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, greet
-from Shape.Shape.shape import Polygon, Point
+from package_1 import Function1, Function2, SubPackage1Class, LearnDecorator
+from Shape import Square, Rectangle, Triangle, Circle, Polygon, Point
 
 
 ##################################################################################
@@ -13,25 +13,39 @@ from Shape.Shape.shape import Polygon, Point
 
 def otherFunction():
    print("Other functions")
-   callingFunctionFromLearnDecorator()
+   callingFunctionFromShape()
    Function2()
    Function1()
+   callingFunctionFromLearnDecorator()
    obj = SubPackage1Class(__name__)
+   callingFunctionFromShape()
 
 def callingFunctionFromLearnDecorator():
-   say_hello()
-   print(add(2, 3))
-   greet("Ali")
-   print(greet.__name__)
-   print(greet.__doc__)
+   obj = LearnDecorator(__name__)
+   obj.say_hello()
+   print(obj.add(2, 3))
+   print(obj.add(1, 5, 8))
+   obj.greet("Ali")
+   print(obj.greet.__name__)
+   print(obj.greet.__doc__)
+   
+   
+def callingFunctionFromShape():
+   circle = Circle(1, 2, diameter= 5)
+   circle.GetShape()
+   print(circle.Area())
+   square = Square(10, 0, 6, 6)
+   print(square._point_br._x)
+   print(square._point_br._y)
+   poly = Polygon((0,0), (3,4), Point(7, 4), (7,0))
+   poly.GetPointList()
+   print(poly.GetPerimeter())
 
 
 def main():
    print("Hello World")
    otherFunction()
-   poly = Polygon((0,0), (3,4), Point(7, 4), (7,0))
-   poly.GetPointList()
-   print(poly.GetPerimeter())
+   
    
    
    

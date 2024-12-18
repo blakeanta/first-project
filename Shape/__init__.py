@@ -1,0 +1,1 @@
+from .Shape.shape import Square, Rectangle, Triangle, Circle, Polygon, Point

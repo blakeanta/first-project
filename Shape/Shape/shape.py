@@ -103,7 +103,8 @@ class Shape(ABC, Point):
 
 
 class Square(Shape):
-   '''use Square(p1, p2) or Square(x, y, w, h)'''
+   '''Create instance with Square(p1, p2) where p1 is top left point and p2 is bottom right 
+   or Square(x, y, w, h) where x and y is top left corner and w and h is width and height'''
    
    def __init__(self, *args):
       super().__init__(Square)
@@ -111,16 +112,26 @@ class Square(Shape):
       if len(args) == 2 and isinstance(args[0], Point) and isinstance(args[1], Point):
          self._point_tl = args[0]
          self._point_br = args[1]
-         self._side_length = self.GetSideLength()
+         self._side_length = self.CalSideLength()
       
       elif len(args) == 4 and all(isinstance(arg, (int, float)) for arg in args):
          x, y, w, h = args
+         
+         if w != h:
+            raise ValueError("This is not a square. Width and height should be same value")
+         
          self._point_tl = Point(x, y)
-         self._point_br = Point(w - x, h - y)
+         self._point_br = Point(x + w, y + h)
          self._side_length = w
 
-   def GetSideLength(self):
-      return self._point_br._x - self._point_tl._x
+   def CalSideLength(self):
+      w = self._point_br._x - self._point_tl._x
+      h = self._point_br._y - self._point_tl._y
+      
+      if abs(w) != abs(h):
+         raise ValueError("This is not a square. Width and height should be same value")
+
+      return w
    
    def GetArea(self):
       return self._side_length ** 2
@@ -138,7 +149,44 @@ class Rectangle(Shape):
 
 
 class Circle(Shape):
-   pass
+   '''Create instance of Circle with Circle(x, y, diamter=) or Circle(x, y, radius=) or Circle(Point, radius=), 
+   where x and y is center of the circle '''
+   
+   def __init__(self, *args, diameter=None, radius=None):
+      super().__init__(Circle)
+      
+      if len(args) == 2 and all(isinstance(arg, (int, float)) for arg in args):
+         self._center_point = Point(args[0], args[1])
+      
+      elif len(args) == 1 and isinstance(args[0], Point):
+         self._center_point = args[0]
+         
+      else:
+         raise ValueError("Too many arguments or wrong type is provided")
+         
+         
+      if diameter is not None:
+         self._diameter = diameter
+         self._radius = self._diameter / 2
+         
+      elif radius is not None:
+         self._radius = radius
+         self._diameter = self._radius * 2
+         
+      else:
+         raise ValueError("diameter and radius cannot be both None must be provided one of them")
+      
+      
+      
+   def Area(self):
+      return math.pi * (self._radius ** 2)
+   
+   def Perimeter(self):
+      return 2 * math.pi * self._radius
+   
+   @classmethod
+   def _Attribute(cls):
+      print("This is a circle")
 
 
 class Triangle(Shape):
