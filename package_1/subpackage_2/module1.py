@@ -1,6 +1,7 @@
 from functools import wraps
 
 #############################################################################################
+#  This module served as the wrapper function source
 #  This file is mainly focus on decorator in python.
 #
 #  In Python, a decorator is a function that allows you to modify the behavior of 
@@ -39,21 +40,12 @@ def simple_decorator(func):
    return wrapper
 
 
-@simple_decorator
-def say_hello():
-   print("Hello")
-
-
 def decorator_with_args(func):
    def wrapper(*args, **kwargs):
       print("Arguments", args, kwargs)
       result = func(*args, **kwargs)
       return result
    return wrapper
-      
-@decorator_with_args
-def add(x, y):
-   return x + y
 
 #############################################################################################
 #  Using functools.wraps
@@ -70,7 +62,3 @@ def built_in_wraps(func):
       return func(*args, **kwargs)
    return wrapper
 
-@built_in_wraps
-def greet(name):
-   """Greet a person with their name."""
-   print(f"Hello, {name}")

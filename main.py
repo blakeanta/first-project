@@ -1,4 +1,4 @@
-from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, greet
+from package_1 import Function1, Function2, SubPackage1Class, LearnDecorator
 
 
 
@@ -19,11 +19,13 @@ def otherFunction():
    obj = SubPackage1Class(__name__)
 
 def callingFunctionFromLearnDecorator():
-   say_hello()
-   print(add(2, 3))
-   greet("Ali")
-   print(greet.__name__)
-   print(greet.__doc__)
+   obj = LearnDecorator(__name__)
+   obj.say_hello()
+   print(obj.add(2, 3))
+   print(obj.add(1, 5, 8))
+   obj.greet("Ali")
+   print(obj.greet.__name__)
+   print(obj.greet.__doc__)
 
 
 def main():
