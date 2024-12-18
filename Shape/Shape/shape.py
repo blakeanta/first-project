@@ -38,7 +38,7 @@ class Point:
       """Calculate the Euclidean distance between two points."""
 
       if not (isinstance(pt1, Point) and isinstance(pt2, Point)):
-         raise TypeError("new_point must be an instance of Point")
+         raise TypeError("pt1 and pt2 must be an instance of Point")
       
       distance = math.sqrt((pt1._x - pt2._x) ** 2 + (pt1._y - pt2._y) ** 2)
       return distance
@@ -178,10 +178,10 @@ class Circle(Shape):
       
       
       
-   def Area(self):
+   def GetArea(self):
       return math.pi * (self._radius ** 2)
    
-   def Perimeter(self):
+   def GetPerimeter(self):
       return 2 * math.pi * self._radius
    
    @classmethod

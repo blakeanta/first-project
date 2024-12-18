@@ -13,7 +13,6 @@ from Shape import Square, Rectangle, Triangle, Circle, Polygon, Point
 
 def otherFunction():
    print("Other functions")
-   callingFunctionFromShape()
    Function2()
    Function1()
    callingFunctionFromLearnDecorator()
@@ -33,7 +32,8 @@ def callingFunctionFromLearnDecorator():
 def callingFunctionFromShape():
    circle = Circle(1, 2, diameter= 5)
    circle.GetShape()
-   print(circle.Area())
+   print(circle.GetArea())
+   print(circle.GetPerimeter())
    square = Square(10, 0, 6, 6)
    print(square._point_br._x)
    print(square._point_br._y)
