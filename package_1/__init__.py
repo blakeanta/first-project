@@ -5,4 +5,4 @@ from package_1.subpackage_1.module2 import Function2
 
 
 # importing module from subpackage_2
-from package_1.subpackage_2.module1 import say_hello, add, greet
+from package_1.subpackage_2.module2 import LearnDecorator

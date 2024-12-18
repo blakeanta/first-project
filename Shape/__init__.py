@@ -1,1 +1,1 @@
-from .Shape.shape import Circle
+from .Shape.shape import Square, Rectangle, Triangle, Circle

@@ -103,7 +103,8 @@ class Shape(ABC, Point):
 
 
 class Square(Shape):
-   '''use Square(p1, p2) or Square(x, y, w, h)'''
+   '''Create instance with Square(p1, p2) where p1 is top left point and p2 is bottom right 
+   or Square(x, y, w, h) where x and y is top left corner and w and h is width and height'''
    
    def __init__(self, *args):
       super().__init__(Square)
@@ -111,16 +112,26 @@ class Square(Shape):
       if len(args) == 2 and isinstance(args[0], Point) and isinstance(args[1], Point):
          self._point_tl = args[0]
          self._point_br = args[1]
-         self._side_length = self.GetSideLength()
+         self._side_length = self.CalSideLength()
       
       elif len(args) == 4 and all(isinstance(arg, (int, float)) for arg in args):
          x, y, w, h = args
+         
+         if w != h:
+            raise ValueError("This is not a square. Width and height should be same value")
+         
          self._point_tl = Point(x, y)
-         self._point_br = Point(w - x, h - y)
+         self._point_br = Point(x + w, y + h)
          self._side_length = w
 
-   def GetSideLength(self):
-      return self._point_br._x - self._point_tl._x
+   def CalSideLength(self):
+      w = self._point_br._x - self._point_tl._x
+      h = self._point_br._y - self._point_tl._y
+      
+      if abs(w) != abs(h):
+         raise ValueError("This is not a square. Width and height should be same value")
+
+      return w
    
    def Area(self):
       return self._side_length ** 2

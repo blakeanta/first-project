@@ -1,5 +1,6 @@
 from package_1 import Function1, Function2, SubPackage1Class, say_hello, add, greet
-from Shape import Circle
+from Shape import Square, Rectangle, Triangle, Circle
+
 
 
 ##################################################################################
@@ -13,7 +14,7 @@ from Shape import Circle
 
 def otherFunction():
    print("Other functions")
-   
+   callingFunctionFromShape()
    callingFunctionFromLearnDecorator()
    Function2()
    Function1()
@@ -32,12 +33,17 @@ def callingFunctionFromShape():
    circle = Circle(1, 2, diameter= 5)
    circle.GetShape()
    print(circle.Area())
+   square = Square(10, 0, 6, 6)
+   print(square._point_br._x)
+   print(square._point_br._y)
+   
 
 
 def main():
    print("Hello World")
    otherFunction()
    
+  
    
    
    
