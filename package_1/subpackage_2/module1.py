@@ -27,13 +27,17 @@ from functools import wraps
 #  wrapper() adds functionality around say_hello().
 #  The @simple_decorator syntax is a shortcut for say_hello = simple_decorator(say_hello).
 #
+#  def wrapper(*args, **kwargs):
+#  *args and **kwargs in the wrapper function ensure that all positional and keyword arguments, 
+#  including self, are forwarded correctly to the decorated method.
+#  This makes the decorator compatible with any method or function.
 #############################################################################################
 
 
 def simple_decorator(func):
-   def wrapper():
+   def wrapper(*args, **kwargs):
       print("Function is about to run")
-      func()
+      func(*args, **kwargs)
       print("Function has finished running")
    
    # Remark: Must return wrapper to avoid TypeError

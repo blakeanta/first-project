@@ -1,4 +1,4 @@
-from module1 import simple_decorator, decorator_with_args, built_in_wraps
+from .module1 import simple_decorator, decorator_with_args, built_in_wraps
 
 
 #############################################################################################
@@ -25,7 +25,7 @@ class LearnDecorator:
       return res
    
    @built_in_wraps
-   def greet(name):
+   def greet(self, name):
       """Greet a person with their name."""
       print(f"Hello, {name}")
    
