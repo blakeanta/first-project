@@ -43,7 +43,7 @@ class Point:
       distance = math.sqrt((pt1._x - pt2._x) ** 2 + (pt1._y - pt2._y) ** 2)
       return distance
    
-   def Rotate(self, angle):
+   def _Rotate(self, angle):
       """Rotate the point around the origin (0, 0) by the given angle in degrees."""
       angle_rad = math.radians(angle)
       new_x = self.x * math.cos(angle_rad) - self.y * math.sin(angle_rad)
@@ -51,7 +51,7 @@ class Point:
       return Point(new_x, new_y)
       
    
-   def Scale(self, factor):
+   def _Scale(self, factor):
       """Scale the point by the given factor."""
       return Point(self.x * factor, self.y * factor)
 
@@ -81,7 +81,7 @@ class Shape(ABC, Point):
    def Rotate(self, angle):
       """Rotate the shape around its position by the given angle."""
       # Rotate the center of the shape (the point) around the origin
-      new_center = self.Rotate(angle)
+      new_center = self._Rotate(angle)
       return new_center
       
    def Scale(self):
@@ -112,7 +112,7 @@ class Square(Shape):
       if len(args) == 2 and isinstance(args[0], Point) and isinstance(args[1], Point):
          self._point_tl = args[0]
          self._point_br = args[1]
-         self._side_length = self.CalSideLength()
+         self._side_length = self.__CalSideLength()
       
       elif len(args) == 4 and all(isinstance(arg, (int, float)) for arg in args):
          x, y, w, h = args
@@ -124,14 +124,17 @@ class Square(Shape):
          self._point_br = Point(x + w, y + h)
          self._side_length = w
 
-   def CalSideLength(self):
-      w = self._point_br._x - self._point_tl._x
-      h = self._point_br._y - self._point_tl._y
+   def __CalSideLength(self):
+      w = abs(self._point_br._x - self._point_tl._x)
+      h = abs(self._point_br._y - self._point_tl._y)
       
-      if abs(w) != abs(h):
+      if w != h:
          raise ValueError("This is not a square. Width and height should be same value")
 
       return w
+   
+   def GetSideLength(self):
+      return self._side_length
    
    def GetArea(self):
       return self._side_length ** 2
@@ -145,7 +148,43 @@ class Square(Shape):
 
 
 class Rectangle(Shape):
-   pass
+   '''Create instance with Rectangle(p1, p2) where p1 is top left point and p2 is bottom right 
+   or Rectangle(x, y, w, h) where x and y is top left corner and w and h is width and height'''
+   
+   def __init__(self, *args):
+      super().__init__(Rectangle)
+      
+      if len(args) == 2 and isinstance(args[0], Point) and isinstance(args[1], Point):
+         self._point_tl = args[0]
+         self._point_br = args[1]
+         self._side_length = self.__CalSideLength()
+      
+      elif len(args) == 4 and all(isinstance(arg, (int, float)) for arg in args):
+         x, y, w, h = args
+         
+         self._point_tl = Point(x, y)
+         self._point_br = Point(x + w, y + h)
+         self._side_length = w, h
+
+   def __CalSideLength(self):
+      w = abs(self._point_br._x - self._point_tl._x)
+      h = abs(self._point_br._y - self._point_tl._y)
+      
+      return w, h
+
+   def GetSideLength(self):
+      '''Return a tuple first element is width second element is height'''
+      return self._side_length
+   
+   def GetArea(self):
+      return self._side_length[0] * self._side_length[1]
+   
+   def GetPerimeter(self):
+      return (2 * self._side_length[0]) + (2 * self._side_length[1])
+   
+   @classmethod
+   def _Attribute(cls):
+      print("This is a Rectangle")
 
 
 class Circle(Shape):

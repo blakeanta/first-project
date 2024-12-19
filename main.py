@@ -40,6 +40,10 @@ def callingFunctionFromShape():
    poly = Polygon((0,0), (3,4), Point(7, 4), (7,0))
    poly.GetPointList()
    print(poly.GetPerimeter())
+   
+   rec = Rectangle(Point(1, 2),Point( 9, 12))
+   print(rec.GetSideLength())
+   print(rec.GetArea())
 
 
 def main():
